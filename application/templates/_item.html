@@ -1,0 +1,20 @@
+<div class="item hoverable" data-id="{{ todo.id }}">
+    <button class="left floated" onclick="toggle_item({{ todo.id }})">
+        {% if todo.done %}
+            <i class="check circle outline icon" id="status_{{ todo.id }}"></i>
+        {% else %}
+            <i class="circle outline icon" id="status_{{ todo.id }}"></i>
+        {% endif %}
+    </button>
+    <label id="body{{ todo.id }}">
+        {{ todo.body }}
+    </label>
+    <div class="right floated hide">
+        <div class="ui blue mini circular icon button" onclick="edit_modal({{ todo.id }})">
+            <a><i class="edit icon black"></i></a>
+        </div>
+        <div class="ui red mini circular icon button" onclick="del_item({{ todo.id }})">
+            <a><i class="remove icon black"></i></a>
+        </div>
+    </div>
+</div>

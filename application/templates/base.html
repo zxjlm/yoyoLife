@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yoyoDaily</title>
+    <link rel="stylesheet" type="text/css" href="../static/Semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/mycss.css">
+    <link rel="stylesheet" type="text/css" href="../static/node_modules/semantic-ui-calendar/dist/calendar.min.css">
+
+    <script src="../static/jquery.min.js"></script>
+    {#    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+    <script src="../static/Semantic/semantic.min.js"></script>
+    <script src="../static/myjs.js"></script>
+    <script src="../static/toastr.min.js"></script>
+    <script src="../static/node_modules/semantic-ui-calendar/dist/calendar.min.js"></script>
+</head>
+<body>
+
+<div class="ui top attached menu">
+    <div class="right menu" style="margin-right: 100px">
+        <div class="ui right fixed item">
+            <i class="sign-out icon big"><a href="{{ url_for('auth.logout') }}">logout</a></i>
+        </div>
+    </div>
+</div>
+
+<div class="ui left fixed vertical pointing menu">
+    <div class="item">
+        <div class="ui centered yellow huge header">yoyo life</div>
+    </div>
+    <a class="item active nav-item">Home</a>
+    <a class="item nav-item">ToDo</a>
+    <a class="item nav-item">Bills</a>
+    <a class="item nav-item">Sign-in</a>
+</div>
+
+
+<script type="text/javascript">
+    var login_url = "{{ url_for('auth.login') }}"
+
+    var todo_init_url = "{{ url_for('todo.init') }}"
+    var bill_init_url = "{{ url_for('bill.init') }}"
+
+    var new_item_url = "{{ url_for('todo.new_item') }}"
+    var edit_item_url = "{{ url_for('todo.edit_item') }}"
+    var toggle_item_url = "{{ url_for('todo.toggle_item',item_id='') }}"
+    var delete_item_url = "{{ url_for('todo.delete_item',item_id='') }}"
+
+    var new_bill_url = "{{ url_for('bill.new_bill') }}"
+    var edit_bill_url = "{{ url_for('bill.edit_bill') }}"
+    var delete_bill_url = "{{ url_for('bill.delete_bill',bill_id='') }}"
+</script>
+{% block content %}
+
+{% endblock %}
+
+
+</body>
+</html>

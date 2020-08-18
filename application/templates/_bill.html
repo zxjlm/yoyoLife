@@ -1,0 +1,16 @@
+<tr id="bill-main-{{ bill.id }}">
+    <td id="bill-payfor-{{ bill.id }}">{{ bill.payfor }}</td>
+    <td id="bill-money-{{ bill.id }}">{{ bill.money }}</td>
+    <td id="bill-type-{{ bill.id }}">{{ bill.consumption_type }}</td>
+    <td>
+        <div class="right floated hide">
+            <div class="ui blue mini circular icon button" onclick="edit_bill_modal({{ bill.id }})">
+                <a><i class="edit icon black"></i></a>
+            </div>
+            <div class="ui red mini circular icon button" onclick="del_bill({{ bill.id }})">
+                <a><i class="remove icon black"></i></a>
+            </div>
+        </div>
+    </td>
+</tr>
+<div id="bill-date-{{ bill.id }}" style="display: none">{{ bill.datetime }}</div>

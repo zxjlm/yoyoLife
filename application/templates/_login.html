@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% macro render_field(field) %} <!-- 定义字段宏 -->
+    {#    <div class="ui stacked segment">#}
+    {#        <div class="field">#}
+    {#            <div class="ui left icon input">#}
+    {#                <i class="user icon"></i>#}
+    {#                <input type="text" name="username" placeholder="Username">#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="field">#}
+    {#            <div class="ui left icon input">#}
+    {#                <i class="lock icon"></i>#}
+    {#                <input type="password" name="password" placeholder="Password">#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="field">#}
+    {#            <div class="ui checkbox">#}
+    {#                <input type="checkbox" tabindex="0" class="hidden">#}
+    {#                <label>Remember</label>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <button class="ui button fluid teal" type="button" onclick="submit_login()">Submit</button>#}
+    {#    </div>#}
+
+    <div class="field">
+        <div class="ui left icon input">
+            {{ field.label }}:
+            {{ field(**kwargs)|safe }}
+            {% if field.errors %}
+                <ul class=errors>
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% block content %}
+    <div class="ui container" style="margin-top: 50px;width: 40%">
+        <div class="ui centered blue huge header">yoyo Life</div>
+        <div class="ui centered small header">an application for daily life</div>
+        <form class="ui large form centered" id="login" method="post">
+
+            {{ form.csrf_token }}
+            {{ render_field(form.username) }}
+            {{ render_field(form.password) }}
+            {% if emsg %}  <!-- 如果有错误信息 则显示 -->
+                <h3> {{ emsg }}</h3>
+            {% endif %}
+            <input class="ui button fluid teal" type="submit" value="登录">
+        </form>
+    </div>
+
+    {#    <script>#}
+    {#        function submit_login() {#}
+    {#            $.ajax({#}
+    {#                type: 'POST',#}
+    {#                url: login_url,#}
+    {#                data: $("#login").serialize(),#}
+    {#                success: function () {#}
+    {#                    if (window.location.hash === '#' || window.location.hash === '') {#}
+    {#                        $(window).trigger('hashchange');#}
+    {#                    } else {#}
+    {#                        window.location.hash = '#';#}
+    {#                    }#}
+    {#                }#}
+    {#            })#}
+    {#        }#}
+    {#    </script>#}
+{% endblock %}

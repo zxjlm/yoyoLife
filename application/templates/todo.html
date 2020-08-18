@@ -1,0 +1,58 @@
+<div class="ui centered blue huge header">Todo list</div>
+
+<div class="ui fluid huge action green input"><input id="item-input" type="text" placeholder="I'm gonna do ...">
+    <button class="ui icon button" onclick="new_item()"><i class="large plus icon"></i></button>
+</div>
+
+<div class="ui big relaxed aligned divided list" id="item_list">
+    {% if flag %}
+        {% for todo in todos %}
+            <div class="item hoverable" data-id="{{ todo.id }}">
+                <button class="left floated" onclick="toggle_item({{ todo.id }})">
+                    {% if todo.done %}
+                        <i class="check circle outline icon" id="status_{{ todo.id }}"></i>
+                    {% else %}
+                        <i class="circle outline icon" id="status_{{ todo.id }}"></i>
+                    {% endif %}
+                </button>
+                <label id="body{{ todo.id }}">
+                    {{ todo.body }}
+                </label>
+                <div class="right floated hide">
+                    <div class="ui blue mini circular icon button" onclick="edit_modal({{ todo.id }})">
+                        <a><i class="edit icon black"></i></a>
+                    </div>
+                    <div class="ui red mini circular icon button" onclick="del_item({{ todo.id }})">
+                        <a><i class="remove icon black"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="ui info message" id="flag-hidden">
+            <i class="close icon"></i>
+            <div>暂时还没有安排哦~</div>
+        </div>
+    {% endif %}
+</div>
+
+<div class="ui modal todo">
+    <i class="close icon"></i>
+    <div class="header">
+        修改Todo项
+    </div>
+    <div class="content">
+        <div class="ui input">
+            <input type="text" id="edit_todo_body" placeholder="">
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            取消
+        </div>
+        <div class="ui positive right labeled icon button" onclick="edit_item()">
+            确认修改
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>

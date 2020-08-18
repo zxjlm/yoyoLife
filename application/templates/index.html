@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="margin-top: 40px">
+        <div class="ui two column doubling stackable grid container">
+            <div class="column">
+                <div class="ui segment" id="todo_part">
+                    <div class="ui active inverted dimmer">
+                        <div class="ui text loader">加载Todo中</div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui segment" id="bills_part">
+                    <div class="ui active inverted dimmer">
+                        <div class="ui text loader">加载Bills中</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function todo_onload() {
+            $.ajax({
+                type: 'GET',
+                url: todo_init_url,
+                success: function (data) {
+                    $('#todo_part').hide().html(data).fadeIn(800);
+                }
+            })
+        }
+
+        function bill_onload() {
+            $.ajax({
+                type: 'GET',
+                url: bill_init_url,
+                success: function (data) {
+                    $('#bills_part').hide().html(data).fadeIn(800);
+                }
+            })
+        }
+
+        $(document).ready(todo_onload())
+        $(document).ready(bill_onload())
+
+    </script>
+{% endblock %}
